@@ -10,6 +10,12 @@ const http = require('http');
 const server = http.createServer(app);
 const io = socketio(server); // it will return io to be used in future
 
+// setup ejs as view engine
+app.set("view engine", "ejs");
+
+// setup static files
+app.set(express.static(path.join(__dirname, "public")));
+
 // creating a route (/)
 app.get("/", function(req, res) {
     res.send("hey");
