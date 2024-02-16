@@ -3,6 +3,7 @@ const app = express();
 
 const socketio = require('socket.io');
 const http = require('http');
+const path = require('path');
 
 // need http server to use socketio
 // its present in node modules
@@ -13,12 +14,18 @@ const io = socketio(server); // it will return io to be used in future
 // setup ejs as view engine
 app.set("view engine", "ejs");
 
-// setup static files
-app.set(express.static(path.join(__dirname, "public")));
+// serve static files
+app.use(express.static(path.join(__dirname, "public")));
+
+// connection event
+io.on("connection", function(socket){
+    console.log("connected");
+})
 
 // creating a route (/)
 app.get("/", function(req, res) {
-    res.send("hey");
+    //res.send("hey");
+    res.render("index");
 })
 
 server.listen(3000);
