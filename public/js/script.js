@@ -7,7 +7,7 @@ if(navigator.geolocation){
     // to watch position of marker
     navigator.geolocation.watchPosition(
         (position) => {
-            const {latitude, longitude} = position.coords;
+            let {latitude, longitude} = position.coords;
             socket.emit("send-location", {latitude, longitude});
         },
         // error
