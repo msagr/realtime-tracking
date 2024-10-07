@@ -5,6 +5,8 @@ const socketio = require('socket.io');
 const http = require('http');
 const path = require('path');
 
+const port = process.env.PORT || 3000;
+
 // need http server to use socketio
 // its present in node modules
 
@@ -34,4 +36,4 @@ app.get("/", function(req, res) {
     res.render("index");
 })
 
-server.listen(3000);
+server.listen(port);
